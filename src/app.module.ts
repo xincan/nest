@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import {MessagesModule} from './message/message.module';
 import {UserModule} from './user/user.module';
 
 const connection = TypeOrmModule.forRoot({
@@ -18,7 +17,6 @@ const connection = TypeOrmModule.forRoot({
 @Module({
   imports: [
       connection,
-      MessagesModule,
       UserModule,
   ],
 })
