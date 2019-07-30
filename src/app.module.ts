@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import {MessagesModule} from './message/message.module';
+import {UserModule} from './user/user.module';
 
 const connection = TypeOrmModule.forRoot({
   type: 'mysql',
@@ -11,9 +12,14 @@ const connection = TypeOrmModule.forRoot({
   database: 'xincan-nest',
   entities: [__dirname + '/**/*.entity{.ts,.js}'],
   synchronize: true,
+  timezone: 'MT',
 });
 
 @Module({
-  imports: [connection, MessagesModule],
+  imports: [
+      connection,
+      MessagesModule,
+      UserModule,
+  ],
 })
 export class AppModule {}
