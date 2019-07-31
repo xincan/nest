@@ -1,8 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import {UserModule} from './user/user.module';
+import { TableModule } from './table/table.module';
 
-const connection = TypeOrmModule.forRoot({
+/**
+ * 创建数据库连接
+ */
+const Connection = TypeOrmModule.forRoot({
   type: 'mysql',
   host: 'localhost',
   port: 3306,
@@ -16,7 +20,8 @@ const connection = TypeOrmModule.forRoot({
 
 @Module({
   imports: [
-      connection,
+      Connection,
+      TableModule,
       UserModule,
   ],
 })
