@@ -13,7 +13,7 @@ export class TableOption extends BaseEntity {
     name: string;
 
     @Column('json', { name: 'content', comment: '记录表格操作信息', nullable: true })
-    content: object;
+    content: string;
 
     @UpdateDateColumn({ name: 'create_time', comment: '创建时间' })
     createTime: Date;

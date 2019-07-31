@@ -24,6 +24,23 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
+## 数据库配置
+```
+/**
+ * 创建数据库连接
+ */
+const Connection = TypeOrmModule.forRoot({
+  type: 'mysql',
+  host: 'localhost',
+  port: 3306,
+  username: '数据库用户',
+  password: '数据库密码',
+  database: 'xincan-nest',
+  entities: [__dirname + '/**/*.entity{.ts,.js}'],
+  synchronize: true,
+  timezone: 'MT',
+});
+```
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
