@@ -1,5 +1,8 @@
 import {User} from './user.entity';
 
+/**
+ * 用户信息接口层
+ */
 export interface IUserService {
 
     /**

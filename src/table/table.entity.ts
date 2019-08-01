@@ -1,7 +1,7 @@
 import { Column, BaseEntity, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 /**
- *  用户实体类
+ *  用户操作列表实体类
  */
 @Entity('table_option')
 export class TableOption extends BaseEntity {

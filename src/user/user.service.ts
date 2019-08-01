@@ -1,7 +1,10 @@
-import { Injectable, Logger } from '@nestjs/common';
+import {Injectable, Logger} from '@nestjs/common';
 import {User} from './user.entity';
 import { IUserService } from './user.interface';
 
+/**
+ * 用户信息接口实现层
+ */
 @Injectable()
 export class UserService implements IUserService {
 
@@ -19,7 +22,6 @@ export class UserService implements IUserService {
      */
     async update(user: User): Promise<number> {
         return await User.update(user.id, user).then(result => {
-            Logger.log(result);
             return 1;
         }).catch( error => {
             Logger.log(error);
@@ -33,7 +35,6 @@ export class UserService implements IUserService {
      */
     async delete(id: string): Promise<number> {
         return await User.delete(id.split(',')).then( result => {
-            Logger.log(result);
             return 1;
         }).catch( error => {
             Logger.log(error);
@@ -71,7 +72,6 @@ export class UserService implements IUserService {
             list.skip((page.page - 1) * page.size);
             list.take(page.size);
             list.orderBy('user.' + page.sortName.replace(/([A-Z])/g, '_$1').toLowerCase(), page.sortType);
-            Logger.log(list.getSql())
             return list.getManyAndCount();
         }
         return null;

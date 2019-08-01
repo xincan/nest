@@ -3,9 +3,16 @@ import {User} from './user.entity';
 import {IUserService} from './user.interface';
 import {ResultObject} from '../result/result.object';
 
+/**
+ * 用户信息控制层
+ */
 @Controller('/user')
 export class UserController {
 
+    /**
+     * 注入用户信息接口
+     * @param userService
+     */
     constructor(@Inject('UserService') private readonly userService: IUserService) {}
 
     /**

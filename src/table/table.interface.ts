@@ -1,5 +1,8 @@
 import {TableOption} from './table.entity';
 
+/**
+ * 用户操作列表接口
+ */
 export interface ITableOptionService {
 
     /**

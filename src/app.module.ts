@@ -1,7 +1,9 @@
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import {Module} from '@nestjs/common';
+import {TypeOrmModule} from '@nestjs/typeorm';
 import {UserModule} from './user/user.module';
-import { TableModule } from './table/table.module';
+import {TableModule} from './table/table.module';
+import {PlanModule} from './plan/plan.module';
+import {WordModule} from './word/word.module';
 
 /**
  * 创建数据库连接
@@ -23,6 +25,8 @@ const Connection = TypeOrmModule.forRoot({
       Connection,
       TableModule,
       UserModule,
+      PlanModule,
+      WordModule,
   ],
 })
 export class AppModule {}

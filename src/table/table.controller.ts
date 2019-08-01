@@ -3,8 +3,16 @@ import {ITableOptionService} from './table.interface';
 import {TableOption} from './table.entity';
 import {ResultObject} from '../result/result.object';
 
+/**
+ * 用户操作列表控制层
+ */
 @Controller('table')
 export class TableOptionController {
+
+    /**
+     * 注入用户操作列表接口
+     * @param tableOptionService
+     */
     constructor(@Inject('TableOptionService') private readonly tableOptionService: ITableOptionService) {}
 
     /**
