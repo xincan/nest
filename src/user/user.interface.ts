@@ -35,4 +35,6 @@ export interface IUserService {
      */
     findById(id: number): Promise<User>;
 
+    bootstrap(page): Promise<[User[], number]>;
+
 }

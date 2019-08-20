@@ -72,6 +72,7 @@ export class UserService implements IUserService {
             list.skip((page.page - 1) * page.size);
             list.take(page.size);
             list.orderBy('user.' + page.sortName.replace(/([A-Z])/g, '_$1').toLowerCase(), page.sortType);
+            Logger.log(list.getSql())
             return list.getManyAndCount();
         }
         return null;
@@ -85,4 +86,40 @@ export class UserService implements IUserService {
         return User.findOne(id);
     }
 
+    /**
+     * 分页查询用户信息
+     * @param page
+     */
+    async bootstrap(page): Promise<[User[], number]> {
+        Logger.log(page);
+        const list = User.createQueryBuilder('user');
+
+        if ( page !== null ) {
+            if (page.loginName !== undefined && page.loginName !== null && page.loginName.length > 0) {
+                list.andWhere('user.login_name=:loginName', {loginName: page.loginName});
+            }
+
+            if (page.name !== undefined && page.name !== null  && page.name.length > 0) {
+                list.andWhere('user.name=:name', {name: page.name});
+            }
+
+            if (page.sex !== undefined && page.sex !== null  && page.sex.length > 0) {
+                list.andWhere('user.sex=:sex', {sex: page.sex});
+            }
+
+            if (page.areaId !== undefined && page.areaId !== null  && page.areaId.length > 0) {
+                list.andWhere('user.area_id=:areaId', {areaId: page.areaId});
+            }
+
+            if (page.organizationId !== undefined && page.organizationId !== null  && page.organizationId.length > 0) {
+                list.andWhere('user.organization_id=:organizationId', {organizationId: page.organizationId});
+            }
+            list.skip((page.page - 1) * page.limit);
+            list.take(page.limit);
+            list.orderBy('user.' + page.sortName.replace(/([A-Z])/g, '_$1').toLowerCase(), page.sortType);
+            Logger.log(list.getSql())
+            return list.getManyAndCount();
+        }
+        return null;
+    }
 }

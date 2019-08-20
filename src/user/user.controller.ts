@@ -16,6 +16,20 @@ export class UserController {
     constructor(@Inject('UserService') private readonly userService: IUserService) {}
 
     /**
+     * 分页查询用户信息
+     * @param params
+     */
+    @Post('/boot')
+    async bootstrap(@Body() page): Promise<ResultObject> {
+        const result = await this.userService.bootstrap(page);
+        if (result !== null) {
+            return new ResultObject(200, result[1], '查询用户成功', result[0]);
+        } else {
+            return new ResultObject(500, 0, '查询用户失败', null);
+        }
+    }
+
+    /**
      * 增加用户信息
      */
     @Put()
