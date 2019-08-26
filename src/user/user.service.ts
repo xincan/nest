@@ -71,7 +71,7 @@ export class UserService implements IUserService {
             }
             list.skip((page.page - 1) * page.size);
             list.take(page.size);
-            list.orderBy('user.' + page.sortName.replace(/([A-Z])/g, '_$1').toLowerCase(), page.sortType);
+            list.orderBy('user.' + page.sortName.replace(/([A-Z])/g, '_$1').toLowerCase(), page.sortType.toUpperCase());
             Logger.log(list.getSql())
             return list.getManyAndCount();
         }
@@ -116,7 +116,7 @@ export class UserService implements IUserService {
             }
             list.skip((page.page - 1) * page.limit);
             list.take(page.limit);
-            list.orderBy('user.' + page.sortName.replace(/([A-Z])/g, '_$1').toLowerCase(), page.sortType);
+            list.orderBy('user.' + page.sortName.replace(/([A-Z])/g, '_$1').toLowerCase(), page.sortType.toUpperCase());
             Logger.log(list.getSql())
             return list.getManyAndCount();
         }
