@@ -40,3 +40,23 @@ export class User extends BaseEntity {
     createTime: Date;
 
 }
+
+/**
+ *  用户角色实体类
+ */
+@Entity('user_role')
+export class UserRole extends BaseEntity {
+
+    @PrimaryGeneratedColumn({name: 'id', comment: '用户角色ID'})
+    id: number;
+
+    @Column('int', { name: 'user_id', comment: '用户ID', nullable: true })
+    userId: number;
+
+    @Column('json', { name: 'roles', comment: '用户分配角色集合', nullable: true })
+    roles: any;
+
+    @UpdateDateColumn({ name: 'create_time', comment: '创建时间' })
+    createTime: Date;
+
+}

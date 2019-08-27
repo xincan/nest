@@ -23,7 +23,6 @@ export class WordContent extends BaseEntity {
 /**
  *  文档章节实体类
  */
-// tslint:disable-next-line:max-classes-per-file
 @Entity('word_outline')
 export class WordOutline extends BaseEntity {
 
@@ -54,7 +53,6 @@ export class WordOutline extends BaseEntity {
 /**
  *  预案类型实体类
  */
-// tslint:disable-next-line:max-classes-per-file
 @Entity('word_resource')
 export class WordResource extends BaseEntity {
 

@@ -33,7 +33,7 @@ const Connection = TypeOrmModule.forRoot({
   type: 'mysql',
   host: 'localhost',
   port: 3306,
-  username: '数据库用户',
+  username: '数据库菜单',
   password: '数据库密码',
   database: 'xincan-nest',
   entities: [__dirname + '/**/*.entity{.ts,.js}'],
