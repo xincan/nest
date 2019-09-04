@@ -4,11 +4,23 @@
 export class StringUtils {
 
     /**
-     * 判断属性是否存在， true表示存在，false表示不存在
+     * 判断属性是否存在， true表示不存在，false表示存在
      * @param str
      * @return boolean
      */
     static isUndefined(str: string) {
+        if (str === undefined) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 判断属性是否存在， true表示存在，false表示不存在
+     * @param str
+     * @return boolean
+     */
+    static isNotUndefined(str: string) {
         if (str === undefined) {
             return false;
         }

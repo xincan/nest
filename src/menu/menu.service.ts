@@ -2,6 +2,7 @@ import {Injectable, Logger} from '@nestjs/common';
 import {Menu} from './menu.entity';
 import { IMenuService } from './menu.interface';
 import {StringUtils} from "../utils/utils.string";
+import {TreeUtils} from "../utils/utils.tree";
 
 /**
  * 菜单信息接口实现层
@@ -72,6 +73,22 @@ export class MenuService implements IMenuService {
      */
     async findById(id: number): Promise<Menu> {
         return await Menu.findOne(id);
+    }
+
+    /**
+     * 查询菜单信息
+     */
+    async findByMenus(): Promise<Menu[]> {
+        let asName = 'm',
+            list = await Menu.createQueryBuilder(asName).getMany();
+        for(const menu of list) {
+            if(StringUtils.isNotUndefined(menu.path) && StringUtils.isNotEmpty(menu.path)){
+                menu.code = menu.path.substring(menu.path.lastIndexOf("/") + 1);
+            }
+        }
+        list = TreeUtils.getTree(-1, list);
+        return list;
+
     }
 
 }

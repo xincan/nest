@@ -35,4 +35,9 @@ export interface IMenuService {
      */
     findById(id: number): Promise<Menu>;
 
+    /**
+     * 查询菜单信息
+     */
+    findByMenus(): Promise<Menu[]>
+
 }
