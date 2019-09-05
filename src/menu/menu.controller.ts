@@ -30,6 +30,20 @@ export class MenuController {
     }
 
     /**
+     * 根据菜单ID查询菜单信息（路径形式）
+     * @param id
+     */
+    @Get('tree')
+    async findByTreeMenu(): Promise<ResultObject> {
+        const result = await this.menuService.findByTreeMenu();
+        if (result !== null) {
+            return new ResultObject(200, 1, '查询菜单成功', result);
+        } else {
+            return new ResultObject(500, 0, '查询菜单失败', null);
+        }
+    }
+
+    /**
      * 根据ID删除菜单信息
      */
     @Post('delete')
@@ -75,8 +89,9 @@ export class MenuController {
      * 增加菜单信息
      */
     @Put()
-    async save(@Body() user: Menu): Promise<ResultObject> {
-        const result = await this.menuService.save(user);
+    async save(@Body() menu: Menu): Promise<ResultObject> {
+        console.log(menu)
+        const result = await this.menuService.save(menu);
         if (result !== null) {
             return new ResultObject(200, 1, '增加菜单成功', result);
         } else {

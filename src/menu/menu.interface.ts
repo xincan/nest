@@ -1,4 +1,4 @@
-import {Menu} from './menu.entity';
+import {Menu, TreeMenu} from './menu.entity';
 
 /**
  * 菜单信息接口层
@@ -38,6 +38,11 @@ export interface IMenuService {
     /**
      * 查询菜单信息
      */
-    findByMenus(): Promise<Menu[]>
+    findByMenus(): Promise<Menu[]>;
+
+    /**
+     * 查询菜单信息(组装vue-treeSelect)
+     */
+    findByTreeMenu(): Promise<TreeMenu[]>;
 
 }

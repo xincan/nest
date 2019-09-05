@@ -42,3 +42,16 @@ export class Menu extends BaseEntity {
     }
 
 }
+
+/**
+ *  菜单实体类(树状结构，构建vue-treeSelect下拉)
+ */
+export class TreeMenu {
+
+    id: number;
+
+    label: string;
+
+    parentId: number;
+
+}

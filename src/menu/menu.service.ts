@@ -1,5 +1,5 @@
 import {Injectable, Logger} from '@nestjs/common';
-import {Menu} from './menu.entity';
+import {Menu, TreeMenu} from './menu.entity';
 import { IMenuService } from './menu.interface';
 import {StringUtils} from "../utils/utils.string";
 import {TreeUtils} from "../utils/utils.tree";
@@ -89,6 +89,24 @@ export class MenuService implements IMenuService {
         list = TreeUtils.getTree(-1, list);
         return list;
 
+    }
+
+
+    /**
+     * 查询菜单信息(组装vue-treeSelect)
+     */
+    async findByTreeMenu(): Promise<TreeMenu[]> {
+        let asName = 'm',
+            list = await Menu.createQueryBuilder(asName).getMany(),
+            tmArr = [];
+        for(const menu of list) {
+            let tm = new TreeMenu();
+            tm.id = menu.id;
+            tm.label = menu.menuName;
+            tm.parentId = menu.parentId;
+            tmArr.push(tm);
+        }
+        return TreeUtils.getTree(-1, tmArr);
     }
 
 }
