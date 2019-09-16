@@ -16,28 +16,16 @@ export class OperationController {
     constructor(@Inject('OperationService') private readonly operationService: IOperationService) {}
 
     /**
-     * 增加操作信息
+     * 根据菜单ID查询操作信息（路径形式）
+     * @param id
      */
-    @Put()
-    async save(@Body() operation: Operation): Promise<ResultObject> {
-        const result = await this.operationService.save(operation);
+    @Get('all')
+    async findAll(): Promise<ResultObject> {
+        const result = await this.operationService.findAll();
         if (result !== null) {
-            return new ResultObject(200, 1, '增加菜单成功', result);
+            return new ResultObject(200, 1, '查询操作成功', result);
         } else {
-            return new ResultObject(500, 0, '增加菜单失败', null);
-        }
-    }
-
-    /**
-     * 修改操作信息
-     */
-    @Patch()
-    async update(@Body() operation: Operation): Promise<ResultObject> {
-        const result = await this.operationService.update(operation);
-        if (result > 0) {
-            return new ResultObject(200, 1, '修改菜单成功', operation);
-        } else {
-            return new ResultObject(500, 0, '修改菜单失败', null);
+            return new ResultObject(500, 0, '查询操作失败', null);
         }
     }
 
@@ -49,23 +37,9 @@ export class OperationController {
         Logger.log(id);
         const result = await this.operationService.delete(id);
         if (result !== null) {
-            return new ResultObject(200, 1, '删除菜单成功', id);
+            return new ResultObject(200, 1, '删除操作成功', id);
         } else {
-            return new ResultObject(500, 0, '删除菜单失败', null);
-        }
-    }
-
-    /**
-     * 分页查询操作信息
-     * @param params
-     */
-    @Get()
-    async findPage(@Query() page): Promise<ResultObject> {
-        const result = await this.operationService.findPage(page);
-        if (result !== null) {
-            return new ResultObject(200, result[1], '查询菜单成功', result[0]);
-        } else {
-            return new ResultObject(500, 0, '查询菜单失败', null);
+            return new ResultObject(500, 0, '删除操作失败', null);
         }
     }
 
@@ -77,10 +51,54 @@ export class OperationController {
     async findByUrlId(@Param('id') id: number): Promise<ResultObject> {
         const result = await this.operationService.findById(id);
         if (result !== null) {
-            return new ResultObject(200, 1, '查询菜单成功', result);
+            return new ResultObject(200, 1, '查询操作成功', result);
         } else {
-            return new ResultObject(500, 0, '查询菜单失败', null);
+            return new ResultObject(500, 0, '查询操作失败', null);
         }
     }
+
+    /**
+     * 增加操作信息
+     */
+    @Put()
+    async save(@Body() operation: Operation): Promise<ResultObject> {
+        const result = await this.operationService.save(operation);
+        if (result !== null) {
+            return new ResultObject(200, 1, '增加操作成功', result);
+        } else {
+            return new ResultObject(500, 0, '增加操作失败', null);
+        }
+    }
+
+    /**
+     * 修改操作信息
+     */
+    @Patch()
+    async update(@Body() operation: Operation): Promise<ResultObject> {
+        const result = await this.operationService.update(operation);
+        if (result > 0) {
+            return new ResultObject(200, 1, '修改操作成功', operation);
+        } else {
+            return new ResultObject(500, 0, '修改操作失败', null);
+        }
+    }
+
+
+
+    /**
+     * 分页查询操作信息
+     * @param params
+     */
+    @Get()
+    async findPage(@Query() page): Promise<ResultObject> {
+        const result = await this.operationService.findPage(page);
+        if (result !== null) {
+            return new ResultObject(200, result[1], '查询操作成功', result[0]);
+        } else {
+            return new ResultObject(500, 0, '查询操作失败', null);
+        }
+    }
+
+
 
 }

@@ -44,6 +44,37 @@ export class Menu extends BaseEntity {
 }
 
 /**
+ *  菜单配置操作实体类
+ */
+@Entity('menu_operation')
+export class MenuOperation extends BaseEntity {
+
+    @PrimaryGeneratedColumn({name: 'id', comment: '菜单ID'})
+    id: number;
+
+    @Column('int', { name: 'parent_id', comment: '上级ID', nullable: true })
+    parentId: number;
+
+    @Column('int', { name: 'menu_operation_id', comment: '菜单(操作)名称', nullable: true })
+    menuOperationId: number;
+
+    @Column('varchar', { name: 'menu_operation_name', comment: '菜单(操作)名称', nullable: true, length: 50 })
+    menuOperationName: string;
+
+    @Column('varchar', { name: 'type', comment: '类型：menu(菜单)、button(按钮)', nullable: true })
+    type: string;
+
+    @UpdateDateColumn({ name: 'create_time', comment: '创建时间' })
+    createTime: Date;
+
+    constructor() {
+        super();
+    }
+
+}
+
+
+/**
  *  菜单实体类(树状结构，构建vue-treeSelect下拉)
  */
 export class TreeMenu {

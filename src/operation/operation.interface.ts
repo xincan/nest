@@ -35,4 +35,9 @@ export interface IOperationService {
      */
     findById(id: number): Promise<Operation>;
 
+    /**
+     * 查询所有操作信息
+     */
+    findAll(): Promise<Operation[]>;
+
 }

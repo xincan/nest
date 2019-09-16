@@ -74,4 +74,13 @@ export class OperationService implements IOperationService {
         return await Operation.findOne(id);
     }
 
+    /**
+     * 查询所有操作信息
+     */
+    async findAll(): Promise<Operation[]> {
+        const asName = 'o'
+            ,list = await Operation.createQueryBuilder(asName).getMany();
+        return list;
+    }
+
 }
