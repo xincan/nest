@@ -45,6 +45,17 @@ INSERT INTO `menu` VALUES ('7', '-1', '预警管理', 'fa-home', null, '\"{\\\"m
 INSERT INTO `menu` VALUES ('8', '7', '预警编辑', 'fa-globe', '/views/system/warn/WarnManage', '\"{\\\"menu\\\":\\\"预警编辑\\\"}\"', '2', '1', '2019-09-03 17:55:45.870697');
 INSERT INTO `menu` VALUES ('9', '-1', '预案管理', 'fa-home', '/views/system/manage/PlanManage', '\"{\\\"menu\\\":\\\"预案管理\\\"}\"', '1', '3', '2019-09-04 18:21:04.601649');
 INSERT INTO `menu` VALUES ('13', '1', '操作管理', 'fa-home', '/views/system/manage/OperationManage', '\"{\\\"menu\\\":\\\"操作管理\\\"}\"', '2', '6', '2019-09-06 12:39:34.965944');
+INSERT INTO `menu` VALUES ('14', '-1', '拓扑管理', 'fa-home', null, '\"{\\\"menu\\\":\\\"拓扑管理\\\"}\"', '1', '5');
+INSERT INTO `menu` VALUES ('15', '14', '拓扑编辑', 'fa-home', '/views/system/topology/TopologyManage', '\"{\\\"menu\\\":\\\"拓扑编辑\\\"}\"', '2', '1');
+INSERT INTO `menu` VALUES ('16', '14', '基本图形', 'fa-home', '/views/system/topology/BasicGraphics', '\"{\\\"menu\\\":\\\"基本图形\\\"}\"', '2', '2');
+INSERT INTO `menu` VALUES ('17', '14', '图形连线', 'fa-home', '/views/system/topology/LinkGraphics', '\"{\\\"menu\\\":\\\"图形连线\\\"}\"', '2', '3');
+INSERT INTO `menu` VALUES ('18', '14', '图片下载', 'fa-home', '/views/system/topology/ImageDownload', '\"{\\\"menu\\\":\\\"图片下载\\\"}\"', '2', '4');
+INSERT INTO `menu` VALUES ('19', '14', '页面概念', 'fa-home', '/views/system/topology/PageGraphics', '\"{\\\"menu\\\":\\\"页面概念\\\"}\"', '2', '5');
+INSERT INTO `menu` VALUES ('20', '14', '流程图', 'fa-home', '/views/system/topology/ProcessGraphics', '\"{\\\"menu\\\":\\\"流程图\\\"}\"', '2', '6');
+INSERT INTO `menu` VALUES ('21', '14', '可视化编辑', 'fa-home', '/views/system/topology/VisualEditGraphics', '\"{\\\"menu\\\":\\\"可视化编辑\\\"}\"', '2', '7');
+INSERT INTO `menu` VALUES ('22', '14', 'GdrawApi', 'fa-home', '/views/system/topology/GdrawApi', '\"{\\\"menu\\\":\\\"GdrawApi\\\"}\"', '2', '0');
+INSERT INTO `menu` VALUES ('23', '14', '路径显示', 'fa-home', '/views/system/topology/ShowPathGraphics', '\"{\\\"menu\\\":\\\"路径显示\\\"}\"', '2', '8');
+INSERT INTO `menu` VALUES ('24', '14', '大屏展示', 'fa-home', '/views/system/topology/ScreenGraphics', '\"{\\\"menu\\\":\\\"大屏展示\\\"}\"', '2', '10');
 
 -- ----------------------------
 -- Table structure for operation
