@@ -1,6 +1,6 @@
 import {Controller, Get, Inject, Param, Put, Body, Post, Query, Patch, Delete, Logger} from '@nestjs/common';
 import {Menu} from './menu.entity';
-import {IMenuService} from './menu.interface';
+import {IMenuService, IMenuOperationService} from './menu.interface';
 import {ResultObject} from '../result/result.object';
 
 /**
@@ -109,6 +109,37 @@ export class MenuController {
             return new ResultObject(200, 1, '修改菜单成功', menu);
         } else {
             return new ResultObject(500, 0, '修改菜单失败', null);
+        }
+    }
+}
+
+/**
+ * 菜单信息控制层
+ */
+@Controller('/menu/operation')
+export class MenuOperationController {
+
+    /**
+     * 注入菜单信息接口
+     * @param userService
+     */
+    constructor(@Inject('MenuOperationService') private readonly menuOperationService: IMenuOperationService) {}
+
+    /**
+     * 保存菜单操作信息
+     * @param id
+     */
+    @Post('/save')
+    async saveMenuOperation(@Body() param: any): Promise<ResultObject> {
+
+        const result = param;
+        const res = await this.menuOperationService.saveMenuOperation(param);
+        Logger.log(result);
+
+        if (result !== null) {
+            return new ResultObject(200, 1, '查询菜单成功', result);
+        } else {
+            return new ResultObject(500, 0, '查询菜单失败', null);
         }
     }
 }

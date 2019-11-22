@@ -30,6 +30,20 @@ export class UserController {
     }
 
     /**
+     * 根据ID删除用户信息
+     */
+    @Get('all')
+    async findAll(@Body('id') id: string): Promise<ResultObject> {
+        Logger.log(id);
+        const result = await this.userService.findAll();
+        if (result !== null) {
+            return new ResultObject(200, result[1], '查询所有用户成功', result[0]);
+        } else {
+            return new ResultObject(500, 0, '查询所有失败', null);
+        }
+    }
+
+    /**
      * 增加用户信息
      */
     @Put()
@@ -52,20 +66,6 @@ export class UserController {
             return new ResultObject(200, 1, '修改用户成功', user);
         } else {
             return new ResultObject(500, 0, '修改用户失败', null);
-        }
-    }
-
-    /**
-     * 根据ID删除用户信息
-     */
-    @Post('delete')
-    async delete(@Body('id') id: string): Promise<ResultObject> {
-        Logger.log(id);
-        const result = await this.userService.delete(id);
-        if (result !== null) {
-            return new ResultObject(200, 1, '删除用户成功', id);
-        } else {
-            return new ResultObject(500, 0, '删除用户失败', null);
         }
     }
 

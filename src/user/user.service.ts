@@ -115,4 +115,14 @@ export class UserService implements IUserService {
         }
         return null;
     }
+
+    /**
+     * 查询所有数据
+     */
+    async findAll(): Promise<[User[], number]> {
+
+        const list = User.createQueryBuilder('user');
+        Logger.log(list.getSql())
+        return  list.getManyAndCount();
+    }
 }

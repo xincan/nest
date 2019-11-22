@@ -46,3 +46,15 @@ export interface IMenuService {
     findByTreeMenu(): Promise<TreeMenu[]>;
 
 }
+
+/**
+ * 菜单信息接口层
+ */
+export interface IMenuOperationService {
+
+    /**
+     * 保存菜单操作信息
+     * @param user
+     */
+    saveMenuOperation(param: any): Promise<number>;
+}
