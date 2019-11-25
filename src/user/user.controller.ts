@@ -32,10 +32,10 @@ export class UserController {
     /**
      * 根据ID删除用户信息
      */
-    @Get('all')
-    async findAll(@Body('id') id: string): Promise<ResultObject> {
-        Logger.log(id);
-        const result = await this.userService.findAll();
+    @Get('/all')
+    async findAll(@Query() param): Promise<ResultObject> {
+        Logger.log(param);
+        const result = await this.userService.findByUser(param);
         if (result !== null) {
             return new ResultObject(200, result[1], '查询所有用户成功', result[0]);
         } else {

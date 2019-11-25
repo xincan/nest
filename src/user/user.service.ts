@@ -1,6 +1,7 @@
 import {Injectable, Logger} from '@nestjs/common';
 import {User} from './user.entity';
 import { IUserService } from './user.interface';
+import {StringUtils} from "../utils/utils.string";
 
 /**
  * 用户信息接口实现层
@@ -119,9 +120,25 @@ export class UserService implements IUserService {
     /**
      * 查询所有数据
      */
-    async findAll(): Promise<[User[], number]> {
+    async findByUser(param): Promise<[User[], number]> {
 
         const list = User.createQueryBuilder('user');
+
+        if (StringUtils.isNotEmpty(param.loginName)) {
+            list.andWhere("user.login_name like :loginName").setParameters({
+                loginName: '%' + param.loginName + '%'
+            });
+        }
+
+        if (StringUtils.isNotEmpty(param.name)) {
+            list.andWhere("user.name like :name").setParameters({
+                name: '%' + param.name + '%'
+            });
+        }
+
+        if (param.sex !== undefined && param.sex !== null) {
+            list.andWhere('user.sex=:sex', {sex: param.sex});
+        }
         Logger.log(list.getSql())
         return  list.getManyAndCount();
     }
