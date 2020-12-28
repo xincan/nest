@@ -9,10 +9,8 @@ export class StringUtils {
      * @return boolean
      */
     static isUndefined(str: string) {
-        if (str === undefined) {
-            return true;
-        }
-        return false;
+        return str === undefined;
+
     }
 
     /**
@@ -21,10 +19,8 @@ export class StringUtils {
      * @return boolean
      */
     static isNotUndefined(str: string) {
-        if (str === undefined) {
-            return false;
-        }
-        return true;
+        return str !== undefined;
+
     }
 
     /**
@@ -33,10 +29,8 @@ export class StringUtils {
      * @return boolean
      */
     static isNotEmpty(str: string) {
-        if (str !== undefined && str !== null  && str.length > 0) {
-            return true;
-        }
-        return false;
+        return str !== undefined && str !== null && str.length > 0;
+
     }
 
     /**
@@ -45,10 +39,8 @@ export class StringUtils {
      * @return boolean
      */
     static isEmpty(str: string) {
-        if (str !== undefined && (str === null  || str === '' || str.length > 0)) {
-            return true;
-        }
-        return false;
+        return str !== undefined && (str === null || str === '' || str.length > 0);
+
     }
 
 }

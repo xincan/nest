@@ -22,9 +22,9 @@ export class UserService implements IUserService {
      * @param user
      */
     async update(user: User): Promise<number> {
-        return await User.update(user.id, user).then(result => {
+        return await User.update(user.id, user).then( (result) => {
             return 1;
-        }).catch( error => {
+        }).catch( (error) => {
             Logger.log(error);
             return 0;
         });
@@ -35,9 +35,9 @@ export class UserService implements IUserService {
      * @param id
      */
     async delete(id: string): Promise<number> {
-        return await User.delete(id.split(',')).then( result => {
+        return await User.delete(id.split(',')).then( (result) => {
             return 1;
-        }).catch( error => {
+        }).catch( (error) => {
             Logger.log(error);
             return 0;
         });

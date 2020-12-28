@@ -35,8 +35,16 @@ export interface IUserService {
      */
     findById(id: number): Promise<User>;
 
+    /**
+     * 分页查询对象信息
+     * @param page 分页对象信息
+     */
     bootstrap(page): Promise<[User[], number]>;
 
+    /**
+     * 根据参数查询用户信息
+     * @param param 根据用户部分参数查询用户信息
+     */
     findByUser(param): Promise<[User[], number]>;
 
 }

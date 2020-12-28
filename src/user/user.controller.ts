@@ -17,7 +17,7 @@ export class UserController {
 
     /**
      * 分页查询用户信息
-     * @param params
+     * @param page 分页对象信息
      */
     @Post('/boot')
     async bootstrap(@Body() page): Promise<ResultObject> {
@@ -30,7 +30,7 @@ export class UserController {
     }
 
     /**
-     * 根据ID删除用户信息
+     * 查询用户信息
      */
     @Get('/all')
     async findAll(@Query() param): Promise<ResultObject> {
@@ -71,7 +71,7 @@ export class UserController {
 
     /**
      * 分页查询用户信息
-     * @param params
+     * @param page 分页参数对象
      */
     @Get()
     async findPage(@Query() page): Promise<ResultObject> {
