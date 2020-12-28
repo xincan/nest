@@ -14,10 +14,10 @@ import {OperationModule} from "./operation/operation.module";
  */
 const Connection = TypeOrmModule.forRoot({
   type: 'mysql',
-  host: 'localhost',
+  host: '192.168.1.19',
   port: 3306,
   username: 'root',
-  password: '123456',
+  password: 'root',
   database: 'xincan-nest',
   entities: [__dirname + '/**/*.entity{.ts,.js}'],
   synchronize: true,
@@ -28,13 +28,11 @@ const Connection = TypeOrmModule.forRoot({
   imports: [
       Connection,           // 数据库连接配置
       TableModule,          // 表格显隐列、排序操作配置
-
       UserModule,           // 用户管理配置
       RoleModule,           // 角色管理配置
       PermissionModule,     // 权限管理配置
       MenuModule,           // 菜单管理配置
       OperationModule,      // 操作管理配置
-
       PlanModule,           // 预案计划配置
       WordModule,           // 文档管理配置
   ],
