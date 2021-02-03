@@ -85,6 +85,7 @@ export class MenuService implements IMenuService {
         if(appId !== undefined) {
             list.andWhere(asName + '.app_id=:appId', {appId: appId});
         }
+        Logger.log(list.getSql());
         const menuList = await list.getMany();
         for(const menu of menuList) {
             if(StringUtils.isNotUndefined(menu.path) && StringUtils.isNotEmpty(menu.path)){
