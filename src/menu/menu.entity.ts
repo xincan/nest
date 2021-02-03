@@ -30,6 +30,9 @@ export class Menu extends BaseEntity {
     @Column('smallint', { name: 'sequence', comment: '菜单顺序', nullable: true })
     sequence: number;
 
+    @Column('smallint', { name: 'app_id', comment: '应用ID', nullable: true })
+    appId: number;
+
     @UpdateDateColumn({ name: 'create_time', comment: '创建时间' })
     createTime: Date;
 

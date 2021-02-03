@@ -102,7 +102,6 @@ export class UserService implements IUserService {
 
             if(page.search && page.search !== null && page.search !== ''){
                 const search = JSON.parse(page.search)
-                console.log(search);
                 if (search.name !== undefined && search.name !== null  && search.name.length > 0) {
                     list.andWhere('user.name=:name', {name: search.name});
                 }

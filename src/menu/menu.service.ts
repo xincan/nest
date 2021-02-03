@@ -12,7 +12,7 @@ export class MenuService implements IMenuService {
 
     /**
      * 添加菜单信息
-     * @param user
+     * @param menu
      */
     async save(menu: Menu): Promise<Menu> {
         return await Menu.save(menu);
@@ -20,12 +20,12 @@ export class MenuService implements IMenuService {
 
     /**
      * 根据菜单ID修改菜单信息
-     * @param user
+     * @param menu
      */
     async update(menu: Menu): Promise<number> {
-        return await Menu.update(menu.id, menu).then(result => {
+        return await Menu.update(menu.id, menu).then((result) => {
             return 1;
-        }).catch( error => {
+        }).catch( (error) => {
             Logger.log(error);
             return 0;
         });
@@ -36,9 +36,9 @@ export class MenuService implements IMenuService {
      * @param id
      */
     async delete(id: string): Promise<number> {
-        return await Menu.delete(id.split(',')).then( result => {
+        return await Menu.delete(id.split(',')).then( (result) => {
             return 1;
-        }).catch( error => {
+        }).catch( (error) => {
             Logger.log(error);
             return 0;
         });
@@ -77,17 +77,21 @@ export class MenuService implements IMenuService {
 
     /**
      * 查询菜单信息
+     * @param appId 应用ID
      */
-    async findByMenus(): Promise<Menu[]> {
-        let asName = 'm',
-            list = await Menu.createQueryBuilder(asName).getMany();
-        for(const menu of list) {
+    async findByMenus(appId: number): Promise<Menu[]> {
+        const asName = "m",
+         list = Menu.createQueryBuilder(asName);
+        if(appId !== undefined) {
+            list.andWhere(asName + '.app_id=:appId', {appId: appId});
+        }
+        const menuList = await list.getMany();
+        for(const menu of menuList) {
             if(StringUtils.isNotUndefined(menu.path) && StringUtils.isNotEmpty(menu.path)){
                 menu.code = menu.path.substring(menu.path.lastIndexOf("/") + 1);
             }
         }
-        list = TreeUtils.getTree(-1, list);
-        return list;
+        return TreeUtils.getTree(-1, menuList);
 
     }
 
@@ -96,11 +100,11 @@ export class MenuService implements IMenuService {
      * 查询菜单信息(组装vue-treeSelect)
      */
     async findByTreeMenu(): Promise<TreeMenu[]> {
-        let asName = 'm',
+        const asName = 'm',
             list = await Menu.createQueryBuilder(asName).getMany(),
             tmArr = [];
         for(const menu of list) {
-            let tm = new TreeMenu();
+            const tm = new TreeMenu();
             tm.id = menu.id;
             tm.label = menu.menuName;
             tm.parentId = menu.parentId;

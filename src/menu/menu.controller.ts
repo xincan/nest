@@ -11,17 +11,17 @@ export class MenuController {
 
     /**
      * 注入菜单信息接口
-     * @param userService
+     * @param menuService
      */
     constructor(@Inject('MenuService') private readonly menuService: IMenuService) {}
 
     /**
      * 根据菜单ID查询菜单信息（路径形式）
-     * @param id
+     * @param appId
      */
     @Get('list')
-    async findByMenus(): Promise<ResultObject> {
-        const result = await this.menuService.findByMenus();
+    async findByMenus(@Query("appId") appId: number): Promise<ResultObject> {
+        const result = await this.menuService.findByMenus(appId);
         if (result !== null) {
             return new ResultObject(200, 1, '查询菜单成功', result);
         } else {
@@ -90,7 +90,6 @@ export class MenuController {
      */
     @Put()
     async save(@Body() menu: Menu): Promise<ResultObject> {
-        console.log(menu)
         const result = await this.menuService.save(menu);
         if (result !== null) {
             return new ResultObject(200, 1, '增加菜单成功', result);
@@ -134,9 +133,7 @@ export class MenuOperationController {
 
         const result = param;
         const res = await this.menuOperationService.saveMenuOperation(param);
-        Logger.log(result);
-
-        if (result !== null) {
+        if (res !== null) {
             return new ResultObject(200, 1, '查询菜单成功', result);
         } else {
             return new ResultObject(500, 0, '查询菜单失败', null);

@@ -37,8 +37,9 @@ export interface IMenuService {
 
     /**
      * 查询菜单信息
+     * @param appId
      */
-    findByMenus(): Promise<Menu[]>;
+    findByMenus(appId: number): Promise<Menu[]>;
 
     /**
      * 查询菜单信息(组装vue-treeSelect)
